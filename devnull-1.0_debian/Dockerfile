@@ -10,8 +10,8 @@ RUN apt-get -y update && apt-get -y upgrade
 RUN apt-get install -y nginx openbsd-inetd
 
 # service configs
-ADD nginx.conf /etc/nginx/nginx.conf
-ADD inetd.conf /etc/inetd.conf
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY inetd.conf /etc/inetd.conf
 
 # ports
 EXPOSE 9
