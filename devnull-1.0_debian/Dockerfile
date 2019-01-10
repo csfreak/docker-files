@@ -4,19 +4,18 @@ FROM debian
 MAINTAINER boardstretcher version: 1.0
 
 # update container
-RUN apt-get -y update
-RUN apt-get -y upgrade
+RUN apt-get -y update && apt-get -y upgrade
 
-# nginx
-RUN apt-get install -y nginx
+# install apps
+RUN apt-get install -y nginx openbsd-inetd
+
+# service configs
 ADD nginx.conf /etc/nginx/nginx.conf
-
-# discard service
-RUN apt-get install -y openbsd-inetd
 ADD inetd.conf /etc/inetd.conf
 
 # ports
 EXPOSE 9
+EXPOSE 9/udp
 EXPOSE 80
 
 # start up nginx
